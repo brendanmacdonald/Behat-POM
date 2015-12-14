@@ -16,7 +16,8 @@ Inside 'Behat/behat.local.yml', update:
     - the 'drupal_root' value to the path to your local drupal installation.
        
 
-Install chromedriver (optional step):
+Optional Step
+=============
 1. Download chromedriver from http://chromedriver.storage.googleapis.com/index.html?path=2.17/
 2. Save it to /usr/local/bin
 
@@ -27,7 +28,7 @@ Test Execution
 2. Navigate to <LOCAL DRUPAL INSTALL>/cw_test/Behat
 3. To execute the tests, select one of the following options based on the format 'sh run-behat.sh <tag> <profile>':
     - ./run-behat.sh regression firefox
-    or
+or
     - ./run-behat.sh regression chrome
 
 
