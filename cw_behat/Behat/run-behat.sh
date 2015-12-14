@@ -76,7 +76,7 @@ cd images
 ls * | grep -v .gitkeep | xargs rm -rf
 cd ..
 
-# Remove all files in 'features' except Helper.feature
+# Remove all files in 'features' except Roles&Permissions.feature
 cd features
 ls * | grep -v Helper.feature | xargs rm -rf
 cd ..

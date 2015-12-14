@@ -3,10 +3,20 @@ Feature: Login page
   As a variety of users
   I need to verify the page structure and functionality
 
+
+#########################################################################################
+###  VALIDATIONS
+#########################################################################################
+
   @login @api
   Scenario: Verify the structure of the login page
     Given I visit the Login page
     Then I verify the structure of the Login page
+
+
+#########################################################################################
+###  SUCCESSFUL LOGIN
+#########################################################################################
 
   @login @api
   Scenario: Verify a successful login
@@ -14,6 +24,11 @@ Feature: Login page
     And I move backward one page
     Then I should be logged in successfully
     And I verify the my account page fields and buttons are displayed on the page
+
+
+#########################################################################################
+###  UNSUCCESSFUL LOGIN
+#########################################################################################
 
   @login @api
   Scenario: Verify a failed login
