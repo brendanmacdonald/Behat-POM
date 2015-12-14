@@ -4,13 +4,13 @@
 # Ignore files/directories created by installs
 cache
 bin
-Behat/vendor
-Behat/pages
-Behat/images
-Behat/behat.local.yml
+cw_behat/Behat/vendor
+cw_behat/Behat/pages
+cw_behat/Behat/images
+cw_behat/Behat/behat.local.yml
 
 # Ignore Servers installs
-Servers/selenium.jar
+cw_behat/Servers/selenium.jar
 
 # Ignore Results
-Results
+cw_behat/Results

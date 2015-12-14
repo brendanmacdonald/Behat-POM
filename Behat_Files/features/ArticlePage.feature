@@ -7,20 +7,20 @@ Feature: Article page
   As a variety of users
   I need to verify the Article page structure and functionality
 
-  @api @article @javascript
+  @article @api @smoke @javascript
   Scenario: Verify the structure of the Article page
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
     Then I verify the structure of the Create Article page
 
-  @api @article @javascript
+  @article @api @regression @javascript
   Scenario: Create an Article with generic values
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
     Then I complete the Create Article page with generic valid data
     And I press save and publish
 
-  @api @article @javascript
+  @article @api @regression @javascript
   Scenario: Create an Article with specified values
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
@@ -33,7 +33,7 @@ Feature: Article page
     And I press save and publish
     Then I verify that the article was created successfully
 
-  @api @article
+  @article @api @regression
   Scenario: Create and Edit an Article with specified values
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
@@ -49,7 +49,7 @@ Feature: Article page
     And I press save and keep published
     And I verify that the article was edited successfully
 
-  @api @article
+  @article @api @regression
   Scenario: Create and Delete an Article with specified values
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
@@ -62,7 +62,7 @@ Feature: Article page
     And I delete the article
     And I verify that the article was deleted successfully
 
-  @api @article
+  @article @api @regression
   Scenario: Validation on Create Article
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
@@ -72,7 +72,7 @@ Feature: Article page
     And I press save and publish
     Then I am still on the Create Article page
 
-  @api @article
+  @article @api @regression
   Scenario: Validation on Edit Article
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
