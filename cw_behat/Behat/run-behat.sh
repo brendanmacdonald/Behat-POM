@@ -31,9 +31,9 @@ fi
 ##############################################################################
 rsync ../../Behat_Files/*.yml features/..
 rsync ../../Behat_Files/features/*.feature features/
-rsync ../../Behat_Files/pages/*.php pages/
 rsync ../../Behat_Files/contexts/*.php features/bootstrap
-rsync ../../Behat_Files/images/*.* images
+rsync -a  ../../Behat_Files/images ../Behat
+rsync -a  ../../Behat_Files/pages ../Behat
 
 ##############################################################################
 ###    BACKUP RESULT FILES
@@ -66,20 +66,14 @@ fi
 # Remove YML config
 rm behat.yml
 
-# Remove all files in 'pages'
-cd pages
-ls * | grep -v .gitkeep | xargs rm -rf
-cd ..
+# Remove all .feature files.
+rm features/*.feature
 
-# Remove all files in 'images'
-cd images
-ls * | grep -v .gitkeep | xargs rm -rf
-cd ..
+# Remove 'pages'
+rm -R pages
 
-# Remove all files in 'features' except Roles&Permissions.feature
-cd features
-ls * | grep -v Helper.feature | xargs rm -rf
-cd ..
+# Remove 'images'
+rm -R images
 
 # Remove all files in 'bootstrap' except HelperContext.php
 cd features/bootstrap

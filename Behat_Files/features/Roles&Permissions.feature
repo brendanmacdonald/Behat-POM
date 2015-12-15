@@ -4,10 +4,10 @@ Feature: Helper Feature
   I need to verify the Drupal CMS permission settings
 
   Rules:
-    Users to be tested are:
-    - Anonymous User
-    - Administrator
-    - TBC
+  Users to be tested are:
+  - Anonymous User
+  - Administrator
+  - TBC
 
 #########################################################################################
 ###   ANONYMOUS USER
@@ -43,27 +43,20 @@ Feature: Helper Feature
 ###   ADMINISTRATOR
 #########################################################################################
 
-  @roles @api @regression @smoke
-  Scenario: Verify Administrator access to the homepage
-    Given I am logged in as a user with the administrator role
-    Then I check the HTTP response code is 200 for '/'
-
-  @roles @api @regression
-  Scenario: Verify Administrator access to /user/login
-    Given I am logged in as a user with the administrator role
-    Then I check the HTTP response code is 200 for '/user/login'
-
   @roles @api @regression
   Scenario: Verify Administrator access to /node/add
     Given I am logged in as a user with the administrator role
-    Then I check the HTTP response code is 200 for '/node/add'
+    And I am on "/node/add"
+    Then the response status code should be 200
 
   @roles @api @regression
   Scenario: Verify Administrator access to /admin
     Given I am logged in as a user with the administrator role
-    Then I check the HTTP response code is 200 for '/admin'
+    And I am on "/admin"
+    Then the response status code should be 200
 
   @roles @api @regression
   Scenario: Verify Administrator access /user/logout
     Given I am logged in as a user with the administrator role
-    Then I check the HTTP response code is 200 for '/user/logout'
+    And I am on "/user/logout"
+    Then the response status code should be 200

@@ -13,7 +13,7 @@ default:
         - Drupal\DrupalExtension\Context\MinkContext
   extensions:
     Behat\MinkExtension:
-      files_path: %paths.base%/images
+      files_path: %paths.base%/images2
       goutte: ~
       selenium2:
         wd_host: "http://localhost:4444/wd/hub"
