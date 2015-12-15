@@ -4,7 +4,7 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use PHPUnit_Framework_Assert as Assertions;
 
-class MyAccountPageContext implements Context {
+class MyAccountContext implements Context {
 
   /**
    * @var HelperContext

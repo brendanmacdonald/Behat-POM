@@ -5,7 +5,7 @@ use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
 use PHPUnit_Framework_Assert as Assertions;
 
-class ArticleContentPageContext implements Context {
+class ArticleContext implements Context {
 
   /**
    * @var HelperContext
@@ -201,8 +201,29 @@ class ArticleContentPageContext implements Context {
         ->getPage()
         ->hasButton($button), $button . ' button not found');
     }
-    foreach ($this->article_page->get_all_regions() as $region) {
-      $this->HelperContext->minkContext->assertElementOnPage($region);
+  }
+
+  /**
+   * @Given I verify the structure of the Edit Article page
+   */
+  public function i_verify_the_structure_of_the_edit_article_page() {
+    foreach ($this->article_page->get_all_fields() as $field) {
+      Assertions::assertTrue($this->HelperContext->getSession()
+        ->getPage()
+        ->hasField($field), $field . ' field not found');
+    }
+    foreach ($this->article_page->get_all_frames() as $frame) {
+      Assertions::assertTrue($this->HelperContext->hasFrame($frame), $frame . ' frame not found');
+    }
+    foreach ($this->article_page->get_all_edit_buttons() as $button) {
+      Assertions::assertTrue($this->HelperContext->getSession()
+        ->getPage()
+        ->hasButton($button), $button . ' button not found');
+    }
+    foreach ($this->article_page->get_all_edit_links() as $link) {
+      Assertions::assertTrue($this->HelperContext->getSession()
+        ->getPage()
+        ->hasLink($link), $link . ' link not found');
     }
   }
 
@@ -233,6 +254,31 @@ class ArticleContentPageContext implements Context {
    */
   public function i_verify_that_the_article_was_deleted_successfully() {
     $this->HelperContext->iCanSeeInTheRegion('The Article ' . $this->article_page_title . ' has been deleted.', $this->article_page->get_message_region('SUCCESS_MESSAGE_REGION'));
+  }
+
+  /**
+   * @Given I can see the following values on the View Article page
+   */
+  public function i_verify_the_following_values_on_the_view_article_page(TableNode $table) {
+    foreach ($table->getHash() as $key => $value) {
+      $field = trim($value['FIELD']);
+      $value = trim($value['VALUE']);
+
+      if ($field == 'TITLE') {
+        $this->HelperContext->iCanSeeInTheRegion($value, $this->article_page->get_region('VIEW_TITLE'));
+      }
+      if ($field == 'BODY') {
+        $this->HelperContext->iCanSeeInTheRegion($value, $this->article_page->get_region('VIEW_BODY'));
+      }
+      if ($field == 'IMAGE') {
+        #TBC
+        #$this->HelperContext->iCanSeeInTheRegion($value, $this->article_page->get_region('VIEW_IMAGE'));
+      }
+      if ($field == 'ALT') {
+        #TBC
+        #$this->HelperContext-> find the image byVIEW_IMAGE, and then get alt value
+      }
+    }
   }
 }
 

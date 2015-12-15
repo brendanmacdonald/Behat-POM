@@ -6,14 +6,14 @@ default:
             parameters:
               screenshots: %paths.base%/../Results/Behat/screenshots
               repository: %paths.base%/features/bootstrap
-        - LoginPageContext
-        - MyAccountPageContext
-        - ArticleContentPageContext
+        - LoginContext
+        - MyAccountContext
+        - ArticleContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
   extensions:
     Behat\MinkExtension:
-      files_path: %paths.base%/images2
+      files_path: %paths.base%/images
       goutte: ~
       selenium2:
         wd_host: "http://localhost:4444/wd/hub"

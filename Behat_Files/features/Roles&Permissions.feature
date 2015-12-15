@@ -4,7 +4,7 @@ Feature: Helper Feature
   I need to verify the Drupal CMS permission settings
 
   Rules:
-  Users to be tested are:
+  The security permissions for the following users will be verified:
   - Anonymous User
   - Administrator
   - TBC

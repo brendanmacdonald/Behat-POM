@@ -3,11 +3,13 @@
 class ArticlePage {
 
   /**
+   * The path to the Article Content Type.
    * @var string $path
    */
   private $path = '/node/add/article';
 
   /**
+   * Fields visble in Create and Edit mode.
    * @var array $fields
    */
   private $fields = array(
@@ -16,6 +18,7 @@ class ArticlePage {
   );
 
   /**
+   * Fields hidden in Create and Edit mode.
    * @var array $hidden_fields
    */
   private $hidden_fields = array(
@@ -23,6 +26,7 @@ class ArticlePage {
   );
 
   /**
+   * Frames available in Create and Edit mode.
    * @var array $frames
    */
   private $frames = array(
@@ -30,6 +34,7 @@ class ArticlePage {
   );
 
   /**
+   * Buttons visible in Create mode.
    * @var array $create_buttons
    */
   private $create_buttons = array(
@@ -39,22 +44,36 @@ class ArticlePage {
   );
 
   /**
+   * Buttons visible in Edit mode.
    * @var array $edit_buttons
    */
   private $edit_buttons = array(
     'REMOVE' => 'Remove',
     'SAVE_AND_KEEP_PUBLISHED' => 'Save and keep published',
     'SAVE_AND_UNPUBLISH' => 'Save and unpublish',
-    'PREVIEW' => 'Preview',
+    'PREVIEW' => 'Preview'
+  );
+
+  /**
+   * Links visible in Edit mode.
+   * @var array $edit_buttons
+   */
+  private $edit_links = array(
     'DELETE' => 'Delete'
   );
 
   /**
-   * @var array $regions
+   * Content regions visible in View mode.
+   * @var array $view_regions
    */
-  private $regions = array();
+  private $regions = array(
+    'VIEW_TITLE' => '.field--name-title',
+    'VIEW_BODY' => '.layout-content-wrapper',
+    'VIEW_IMAGE' => '.image-style-large'
+  );
 
   /**
+   * Message regions in View mode.
    * @var array $message_regions
    */
   private $message_regions = array(
@@ -62,91 +81,120 @@ class ArticlePage {
   );
 
   /**
-   * @return string The path.
+   * The path to the Article Content type.
+   * @return string
    */
   function get_path() {
     return $this->path;
   }
 
   /**
-   * @return array All fields.
+   * All fields.
+   * @return array
    */
   function get_all_fields() {
     return $this->fields;
   }
 
   /**
-   * @return string A specific field.
+   * A specific field.
+   * @return string
    */
   function get_field($field) {
     return $this->fields[$field];
   }
 
   /**
-   * @return string A specific hidden field.
+   * All hidden fields.
+   * @return array
+   */
+  function get_all_hidden_fields() {
+    return $this->hidden_fields;
+  }
+
+  /**
+   * A specific hidden field.
+   * @return string
    */
   function get_hidden_field($hidden_field) {
     return $this->hidden_fields[$hidden_field];
   }
 
   /**
-   * @return array All create buttons.
+   * All create buttons.
+   * @return array
    */
   function get_all_create_buttons() {
     return $this->create_buttons;
   }
 
   /**
-   * @return string A specific create button.
+   * A specific create button.
+   * @return string
    */
   function get_create_button($button) {
     return $this->create_buttons[$button];
   }
 
   /**
-   * @return array All edit buttons.
+   * All edit buttons.
+   * @return array
    */
   function get_all_edit_buttons() {
     return $this->edit_buttons;
   }
 
   /**
-   * @return string A specific create button.
+   * All edit links.
+   * @return array
+   */
+  function get_all_edit_links() {
+    return $this->edit_links;
+  }
+
+  /**
+   * A specific create button.
+   * @return string
    */
   function get_edit_button($button) {
     return $this->edit_buttons[$button];
   }
 
   /**
-   * @return array All regions.
+   * All regions.
+   * @return array
    */
   function get_all_regions() {
     return $this->regions;
   }
 
   /**
-   * @return string A specific region.
+   * A specific region.
+   * @return string
    */
   function get_region($region) {
     return $this->regions[$region];
   }
 
   /**
-   * @return array All frames.
+   * All frames.
+   * @return array
    */
   function get_all_frames() {
     return $this->frames;
   }
 
   /**
-   * @return string A specific frame.
+   * A specific frame.
+   * @return string
    */
   function get_frame($frame) {
     return $this->frames[$frame];
   }
 
   /**
-   * @return string A specific message region.
+   * A specific message region.
+   * @return string
    */
   function get_message_region($region) {
     return $this->message_regions[$region];
