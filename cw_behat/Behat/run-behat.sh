@@ -7,6 +7,7 @@ TAG=$1
 PROFILE=$2
 SCENARIO_NAME=$3
 
+
 ##############################################################################
 ###    HELP OPTION
 ##############################################################################
@@ -17,6 +18,7 @@ if [ "$1" == "-h" ]; then
   exit 0
 fi
 
+
 ##############################################################################
 ###    SHELL SCRIPT MUST ALWAYS BE PASSED THE TAG AND PROFILE VARIABLES
 ##############################################################################
@@ -25,6 +27,7 @@ then
    printf 'ERROR: Expected Tag followed by Profile.\nE.g. sh run-behat.sh <tag> <profile>\n'
    exit 0
 fi
+
 
 ##############################################################################
 ###    SYNC BEHAT_FILES PRIOR TO EXECUTION
@@ -35,10 +38,12 @@ rsync -a ../../Behat_Files/features/* features/
 rsync -a  ../../Behat_Files/images ../Behat
 rsync -a  ../../Behat_Files/pages ../Behat
 
+
 ##############################################################################
 ###    BACKUP RESULT FILES
 ##############################################################################
 mv ../Results/Behat/*.html ../Results/Behat/History
+
 
 ##############################################################################
 ###    TEST EXECUTION
@@ -92,9 +97,3 @@ if [ $PROFILE = "firefox" ] || [ $PROFILE = "chrome"  ]
 then
    sh ../Servers/stop_selenium_server.sh
 fi
-
-
-
-Do you want to run all the tests on firefox? Press 1.
-Do you want to run all the tests on chrome? Press 2.
-Do you want to run a specific named test? nPress 3
