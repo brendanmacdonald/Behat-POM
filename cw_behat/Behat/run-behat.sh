@@ -29,9 +29,9 @@ fi
 ##############################################################################
 ###    SYNC BEHAT_FILES PRIOR TO EXECUTION
 ##############################################################################
-rsync ../../Behat_Files/*.yml features/..
-rsync ../../Behat_Files/features/*.feature features/
+rsync ../../Behat_Files/behat.yml features/..
 rsync ../../Behat_Files/contexts/*.php features/bootstrap
+rsync -a ../../Behat_Files/features/* features/
 rsync -a  ../../Behat_Files/images ../Behat
 rsync -a  ../../Behat_Files/pages ../Behat
 
@@ -48,9 +48,9 @@ then
    sh ../Servers/start_selenium_server.sh;
    if [ ! -z "$SCENARIO_NAME" ]
    then
-      bin/behat --tags=@$TAG -p $PROFILE --name="$SCENARIO_NAME" -f html -f pretty
+      bin/behat -c behat.ym --tags=@$TAG -p $PROFILE --name="$SCENARIO_NAME"
    else
-      bin/behat --tags=@$TAG -p $PROFILE -f html -f pretty
+      bin/behat -c behat.yml --tags=@$TAG -p $PROFILE
    fi
 fi
 
@@ -60,14 +60,15 @@ then
    bin/behat --tags=@$TAG -p $PROFILE
 fi
 
+
 ##############################################################################
 ###    TEARDOWN
 ##############################################################################
 # Remove YML config
 rm behat.yml
 
-# Remove all .feature files.
-rm features/*.feature
+# Remove all feature subdirectories except bootstrap.
+find ./features -type d -not -name bootstrap -not -name features -exec rm -R {} \;
 
 # Remove 'pages'
 rm -R pages
@@ -91,3 +92,9 @@ if [ $PROFILE = "firefox" ] || [ $PROFILE = "chrome"  ]
 then
    sh ../Servers/stop_selenium_server.sh
 fi
+
+
+
+Do you want to run all the tests on firefox? Press 1.
+Do you want to run all the tests on chrome? Press 2.
+Do you want to run a specific named test? nPress 3

@@ -1,14 +1,36 @@
 default:
   suites:
-    behat_suite:
+    login:
+      paths: [ %paths.base%/features/Login ]
+      filters:
+        tags: @login
+      contexts:
+        - LoginContext
+        - MyAccountContext
+        - HelperContext:
+            parameters:
+              screenshots: %paths.base%/../Results/Behat/screenshots
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+    article:
+      paths: [ %paths.base%/features/Article ]
+      filters:
+        tags: @article
+      contexts:
+        - ArticleContext
+        - HelperContext:
+            parameters:
+              screenshots: %paths.base%/../Results/Behat/screenshots
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+    roles:
+      paths: [ %paths.base%/features/Roles ]
+      filters:
+        tags: @roles
       contexts:
         - HelperContext:
             parameters:
               screenshots: %paths.base%/../Results/Behat/screenshots
-              repository: %paths.base%/features/bootstrap
-        - LoginContext
-        - MyAccountContext
-        - ArticleContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
   extensions:
@@ -29,6 +51,7 @@ default:
        print_outp: true
        loop_break: true
   formatters:
+    pretty: true
     html:
       output_path: %paths.base%/../Results/Behat
 
@@ -50,4 +73,3 @@ phantomjs:
     Behat\MinkExtension:
       selenium2:
         wd_host: "http://localhost:4445/wd/hub"
-

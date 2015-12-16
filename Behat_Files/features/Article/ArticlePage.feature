@@ -18,13 +18,13 @@ Feature: Article page
 ###  VALIDATIONS
 #########################################################################################
 
-  @article @validation @api @smoke @javascript
+  @article @api @regression @javascript
   Scenario: Verify the structure of the Create Article page
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
     Then I verify the structure of the Create Article page
 
-  @article @validation @api @regression @javascript
+  @article @api @regression @javascript
   Scenario: Verify the structure of the Edit Article page
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
@@ -36,7 +36,7 @@ Feature: Article page
     When I visit the Edit Article page
     Then I verify the structure of the Edit Article page
 
-  @article @validation @api @regression @javascript
+  @article @api @regression @javascript
   Scenario: Validation rules on Create Article
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
@@ -46,7 +46,7 @@ Feature: Article page
     And I press save and publish
     Then I am still on the Create Article page
 
-  @article @validation @api @regression @javascript
+  @article @api @regression @javascript
   Scenario: Validation rules on Edit Article
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
@@ -67,7 +67,7 @@ Feature: Article page
 ###  CREATE ARTICLE
 #########################################################################################
 
-  @article @api @regression @javascript
+  @article @api @regression @smoke @javascript
   Scenario: Create an Article with generic values
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page

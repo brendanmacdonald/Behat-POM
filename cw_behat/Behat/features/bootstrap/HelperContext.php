@@ -13,7 +13,7 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 /**
  * Class HelperContext
  *
- * CWContext contains supporting functions for all Behat projects.
+ * HelperContext contains supporting functions for all Behat projects.
  */
 class HelperContext extends RawDrupalContext implements SnippetAcceptingContext {
 

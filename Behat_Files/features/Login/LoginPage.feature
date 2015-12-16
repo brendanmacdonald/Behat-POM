@@ -8,7 +8,7 @@ Feature: Login page
 ###  VALIDATIONS
 #########################################################################################
 
-  @login @api
+  @login @api @regression
   Scenario: Verify the structure of the login page
     Given I visit the Login page
     Then I verify the structure of the Login page
@@ -18,7 +18,7 @@ Feature: Login page
 ###  SUCCESSFUL LOGIN
 #########################################################################################
 
-  @login @api
+  @login @api @regression @smoke
   Scenario: Verify a successful login
     Given I am logged in as a user with the administrator role
     And I move backward one page
@@ -30,7 +30,7 @@ Feature: Login page
 ###  UNSUCCESSFUL LOGIN
 #########################################################################################
 
-  @login @api
+  @login @api @regression
   Scenario: Verify a failed login
     Given I visit the Login page
     When I enter the username invalid and password invalid
