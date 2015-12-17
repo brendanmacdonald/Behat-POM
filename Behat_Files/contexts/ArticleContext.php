@@ -231,7 +231,7 @@ class ArticleContext implements Context {
    * @Given I delete the article
    */
   public function i_delete_the_article() {
-    $this->HelperContext->getSession()->getPage()->pressButton($this->article_page->get_edit_button('DELETE'));
+    $this->HelperContext->getSession()->getPage()->pressButton($this->article_page->get_edit_link('DELETE'));
   }
 
   /**
@@ -270,13 +270,11 @@ class ArticleContext implements Context {
       if ($field == 'BODY') {
         $this->HelperContext->iCanSeeInTheRegion($value, $this->article_page->get_region('VIEW_BODY'));
       }
-      if ($field == 'IMAGE') {
-        #TBC
-        #$this->HelperContext->iCanSeeInTheRegion($value, $this->article_page->get_region('VIEW_IMAGE'));
+    if ($field == 'IMAGE') {
+        $this->HelperContext->minkContext->assertElementOnPage($this->article_page->get_region('VIEW_IMAGE'));
       }
       if ($field == 'ALT') {
-        #TBC
-        #$this->HelperContext-> find the image byVIEW_IMAGE, and then get alt value
+        $this->HelperContext->iCanSeeTheValueInTheHTML($value);
       }
     }
   }

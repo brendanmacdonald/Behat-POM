@@ -17,6 +17,9 @@ use Behat\Behat\Context\SnippetAcceptingContext;
  */
 class HelperContext extends RawDrupalContext implements SnippetAcceptingContext {
 
+  // HTTP 200 status response.
+  const HTTP_200_STATUS = 200;
+
   // Error code.
   const ERROR_CODE = 99;
 
@@ -570,6 +573,7 @@ JS;
 
   /**
    * @Given get the HTTP response code :url
+   * Anonymous users ONLY.
    */
   public function getHTTPResponseCode($url) {
     $headers = get_headers($url, 1);
@@ -579,11 +583,18 @@ JS;
   /**
    * @Given I check the HTTP response code is :code for :url
    */
-  public function iCheckTheHttpResponseCodeIsFor($code, $url) {
+  public function iCheckTheHttpResponseCodeIsFor($expected_response, $url) {
     $path = $this->getMinkParameter('base_url') . $url;
-    $response = $this->getHTTPResponseCode($path);
-    if ($response != $code) {
-      throw new CWContextException("The status code for {$url} was {$response}");
+    $actual_response = $this->getHTTPResponseCode($path);
+    $this->verifyResponseForURL($actual_response, $expected_response, $url);
+  }
+
+  /**
+   * Compare the actual and expected status responses for a URL.
+   */
+  function verifyResponseForURL($actual_response, $expected_response, $url) {
+    if (intval($actual_response) !== intval($expected_response)) {
+      throw new CWContextException("This '{$url}' asset returned a {$actual_response} response.");
     }
   }
 
@@ -619,8 +630,24 @@ JS;
   }
 
   /**
+   * Asserts that a given content type is createable.
+   *  - replaces the default DrupalContext version.
+   *
+   * @Then I am able to create a/an :type( content)
+   */
+  public function assertCreateNodeOfType($type) {
+    $node = (object) array('title' => 'Test Title', 'type' => $type);
+    $saved = $this->nodeCreate($node);
+
+    // Set internal browser on the node edit page.
+    $url = $this->getMinkParameter('base_url') . '/node/' . $saved->nid;
+    $this->visitPath($url);
+    $this->minkContext->assertResponseStatus(200);
+  }
+
+  /**
    * Asserts that a given content type is editable.
-   *  - replaces the default DrupalContext minus the status code check.
+   *  - replaces the default DrupalContext version.
    *
    * @Then I am able to edit a/an :type( content)
    */
@@ -629,7 +656,9 @@ JS;
     $saved = $this->nodeCreate($node);
 
     // Set internal browser on the node edit page.
-    $this->getSession()->visit($this->locatePath('/node/' . $saved->nid . '/edit'));
+    $url = $this->getMinkParameter('base_url') . '/node/' . $saved->nid . '/edit';
+    $this->visitPath($url);
+    $this->minkContext->assertResponseStatus(200);
   }
 
   /*******************************************************************************
@@ -668,6 +697,13 @@ JS;
   public function iCannotSeeTheLinkInTheRegion($link, $region) {
     $this->minkContext->assertNotLinkVisible($link);
     $this->minkContext->assertElementNotContainsText($region, $link);
+  }
+
+  /**
+   * @Given I can see the vallue :value in the HTML
+   */
+  public function iCanSeeTheValueInTheHTML($value) {
+    $this->minkContext->assertResponseContains($value);
   }
 
   /*******************************************************************************
@@ -714,14 +750,93 @@ JS;
   }
 
   /**
-   * @Given I verify the :asset assets
+   * @Given I verify the :asset assets via no JS
+   * Can be used to validate:
+   *  - Image
+   *  - Script
+   *  - Hyperlink
+   *  - Meta
+   *  - Links
    */
-  public function iVerifyTheAssets($assetType) {
+  public function iVerifyTheAssetsViaNoJS($assetType) {
     // Get a DOM of the current page.
     $dom = $this->createDOMOfPage();
 
-    // Xpath of the assets.
-    switch (strtoupper($assetType)) {
+    // Get xpath of the asset.
+    $xpath = $this->getXpathForAnAsset($assetType);
+
+    // Get all the assets matching the xpath.
+    $assets = $this->getNodesMatchingXpath($dom, $xpath);
+    foreach ($assets as $asset) {
+      $assetToCheck = $asset->nodeValue;
+
+      // Check the response for the asset (starting with '//')
+      if (preg_match('/^\/\//', $assetToCheck, $match)) {
+        $this->getSession()->visit($assetToCheck);
+      }
+      // Check the response for the asset (starting with 'http' or '/')
+      else {
+        if (preg_match('/^http|^\//', $assetToCheck, $match)) {
+          $this->visitPath($assetToCheck);
+        }
+      }
+
+      // Verify the response status code is 200.
+      $statusCode = $this->getSession()->getStatusCode();
+      if ($statusCode !== self::HTTP_200_STATUS) {
+        throw new CWContextException("This '{$assetType}' asset did not return a 200 response - {$assetToCheck}.");
+      }
+    }
+  }
+
+  /**
+   * @Given I verify the :asset assets via JS
+   * Can be used to validate:
+   *  - Image
+   *  - Script
+   *  - Hyperlink
+   */
+  public function iVerifyTheAssetsviaJS($assetType) {
+    // Get a DOM of the current page.
+    $dom = $this->createDOMOfPage();
+
+    // Get xpath of the asset.
+    $xpath = $this->getXpathForAnAsset($assetType);
+
+    // Get all the assets matching the xpath.
+    $assets = $this->getNodesMatchingXpath($dom, $xpath);
+    foreach ($assets as $asset) {
+      $assetToCheck = $asset->nodeValue;
+
+      // Check the response for the asset (starting with '//')
+      if (preg_match('/^\/\//', $assetToCheck, $match)) {
+        $url = 'http:' . $assetToCheck;
+      }
+
+      // Check the response for the asset (starting with 'http')
+      elseif (preg_match('/^http/', $assetToCheck, $match)) {
+        $url = $assetToCheck;
+      }
+
+      // Check the response for the asset (starting with '/')
+      elseif (preg_match('/^\//', $assetToCheck, $match)) {
+        $url = $this->getMinkParameter('base_url') . $assetToCheck;
+      }
+      else {
+        // do not check the asset.
+        break;
+      }
+      $this->visitPath($url);
+      $response = $this->getHTTPResponseCode($url);
+      $this->verifyResponseForURL($response, self::HTTP_200_STATUS, $url);
+    }
+  }
+
+  /**
+   * Get the xpath for an asset
+   */
+  function getXpathForAnAsset($asset) {
+    switch (strtoupper($asset)) {
       case "SCRIPT":
         $xpath = "//script/@src";
         break;
@@ -743,30 +858,10 @@ JS;
         break;
 
       default:
-        throw new CWContextException("This asset '{$assetType}' is not a valid value for this test.");
+        throw new CWContextException("This asset '{$asset}' is not a valid value for this test.");
     }
 
-    // Get all the assets matching the xpath.
-    $assets = $this->getNodesMatchingXpath($dom, $xpath);
-    foreach ($assets as $asset) {
-      $assetToCheck = $asset->nodeValue;
-
-      // Check the response for the asset (starting with '//')
-      if (preg_match('/^\/\//', $assetToCheck, $match)) {
-        $this->getSession()->visit($assetToCheck);
-      }
-      // Check the response for the asset (starting with 'http' or '/')
-      else {
-        if (preg_match('/^http|^\//', $assetToCheck, $match)) {
-          $this->visitPath($assetToCheck);
-        }
-      }
-
-      $statusCode = $this->getSession()->getStatusCode();
-      if ($statusCode !== 200) {
-        throw new CWContextException("This '{$assetType}' asset did not return a 200 response - {$assetToCheck}.");
-      }
-    }
+    return $xpath;
   }
 
   /*******************************************************************************
@@ -877,6 +972,7 @@ JS;
   /*******************************************************************************
    * End of OBJECT REPOSITORY functions.
    *******************************************************************************/
+
 }
 
 /**

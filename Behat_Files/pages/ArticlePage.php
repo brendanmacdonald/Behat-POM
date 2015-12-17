@@ -153,6 +153,14 @@ class ArticlePage {
   }
 
   /**
+   * A specific edit link.
+   * @return string
+   */
+  function get_edit_link($link) {
+    return $this->edit_links[$link];
+  }
+
+  /**
    * A specific create button.
    * @return string
    */

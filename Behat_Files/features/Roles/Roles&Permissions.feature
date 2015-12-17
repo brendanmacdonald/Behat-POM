@@ -1,13 +1,8 @@
-Feature: Helper Feature
-  In order to test the Roles and Responsibilities
+Feature: Roles and Responsibilities
+  In order to test the User Roles and Responsibilities
   As a variety of users
   I need to verify the Drupal CMS permission settings
 
-  Rules:
-  The security permissions for the following users will be verified:
-  - Anonymous User
-  - Administrator
-  - TBC
 
 #########################################################################################
 ###   ANONYMOUS USER

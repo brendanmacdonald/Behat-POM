@@ -1,18 +1,8 @@
 Feature: Article page
-  In order to test Articles
+  In order to test the Article Content type
   As a variety of users
   I need to verify the Article page structure and functionality
 
-  Rules:
-  The following scenarios are covered:
-  - verify the Create Article page structure
-  - verify the Edit Article page structure
-  - verify the Create Article page validation
-  - verify the Edit Article page validation
-  - create an Article
-  - edit an Article
-  - delete an Article
-  - view an Article
 
 #########################################################################################
 ###  VALIDATIONS
@@ -67,7 +57,12 @@ Feature: Article page
 ###  CREATE ARTICLE
 #########################################################################################
 
-  @article @api @regression @smoke @javascript
+  @article @api @smoke @bm
+  Scenario: Create an Article
+    Given I am logged in as a user with the administrator role
+    Then I am able to create an article content
+
+  @article @api @regression @javascript
   Scenario: Create an Article with generic values
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
@@ -91,6 +86,11 @@ Feature: Article page
 #########################################################################################
 ###  EDIT ARTICLE
 #########################################################################################
+
+  @article @api @smoke
+  Scenario: Edit an Article
+    Given I am logged in as a user with the administrator role
+    Then I am able to edit an article content
 
   @article @api @regression
   Scenario: Create and Edit an Article with specified values
@@ -148,3 +148,6 @@ Feature: Article page
       | BODY  | This is the body text of the Article. |
       | IMAGE | 150x350.jpg                           |
       | ALT   | ALT - 150x350.jpg                     |
+    And I verify the 'Image' assets via JS
+    And I verify the 'Script' assets via JS
+    And I verify the 'Hyperlink' assets via JS
