@@ -3,11 +3,13 @@
 class LoginPage {
 
   /**
+   * The path to the Login page.
    * @var string $path
    */
   public $path = '/user/login';
 
   /**
+   * Fields visible on Login screen.
    * @var array $fields
    */
   private $fields = array(
@@ -16,6 +18,7 @@ class LoginPage {
   );
 
   /**
+   * Buttons visible on Login screen.
    * @var array $buttons
    */
   private $buttons = array(
@@ -23,6 +26,7 @@ class LoginPage {
   );
 
   /**
+   * Regions visible on Login screen.
    * @var array $regions
    */
   private $regions = array(
@@ -30,6 +34,7 @@ class LoginPage {
   );
 
   /**
+   * Message regions visible on Login screen.
    * @var array $message_regions
    */
   private $message_regions = array(
@@ -37,56 +42,64 @@ class LoginPage {
   );
 
   /**
-   * @return string The path.
+   * The path.
+   * @return string
    */
   function get_path() {
     return $this->path;
   }
 
   /**
-   * @return array All fields.
+   * All fields.
+   * @return array
    */
   function get_all_fields() {
     return $this->fields;
   }
 
   /**
-   * @return string A specific field.
+   * A specific field.
+   * @return string
    */
   function get_field($field) {
     return $this->fields[$field];
   }
 
   /**
-   * @return array All buttons.
+   * All buttons.
+   * @return array
    */
   function get_all_buttons() {
     return $this->buttons;
   }
 
   /**
-   * @return string A specific button.
+   * A specific button.
+   * @return string
    */
   function get_button($button) {
     return $this->buttons[$button];
   }
 
   /**
-   * @return array All regions.
+   * All regions.
+   * @return array
    */
   function get_all_regions() {
     return $this->regions;
   }
 
   /**
-   * @return string A specific region.
+   * A specific region.
+   * @return string
    */
   function get_region($region) {
     return $this->regions[$region];
   }
 
   /**
-   * @return string A specific message region.
+   * A specific message region.
+   * @return string
    */
   function get_message_region($region) {
     return $this->message_regions[$region];

@@ -56,6 +56,8 @@ class ArticleContext implements Context {
   public function fill_in_article_content_with_generic_valid_data() {
     self::fill_title_field('Article Title <alpha>');
     self::fill_body_frame('This is some body text.');
+    self::attach_image('150x350.jpg');
+    self::fill_alt_field('This is some ALT text');
   }
 
   /**
@@ -63,7 +65,10 @@ class ArticleContext implements Context {
    */
   public function fill_title_field($title) {
     $this->HelperContext->iFillInFieldByIDWith($this->article_page->get_field('TITLE'), $title);
-    $this->article_page_title = $title;
+    $this->article_page_title = $this->HelperContext->getSession()
+      ->getPage()
+      ->findById($this->article_page->get_field('TITLE'))
+      ->getValue();
   }
 
   /**
@@ -160,6 +165,7 @@ class ArticleContext implements Context {
       throw new CWContextException("No longer on the Edit Article page, but on {$current_url}.");
     }
   }
+
   /**
    * @Given I enter the following values on the Create Article page
    * @Given I enter the following values on the Edit Article page
@@ -231,7 +237,9 @@ class ArticleContext implements Context {
    * @Given I delete the article
    */
   public function i_delete_the_article() {
-    $this->HelperContext->getSession()->getPage()->pressButton($this->article_page->get_edit_link('DELETE'));
+    $this->HelperContext->getSession()
+      ->getPage()
+      ->pressButton($this->article_page->get_edit_link('DELETE'));
   }
 
   /**
@@ -270,7 +278,7 @@ class ArticleContext implements Context {
       if ($field == 'BODY') {
         $this->HelperContext->iCanSeeInTheRegion($value, $this->article_page->get_region('VIEW_BODY'));
       }
-    if ($field == 'IMAGE') {
+      if ($field == 'IMAGE') {
         $this->HelperContext->minkContext->assertElementOnPage($this->article_page->get_region('VIEW_IMAGE'));
       }
       if ($field == 'ALT') {

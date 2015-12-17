@@ -19,14 +19,14 @@ Feature: Article page
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
     When I enter the following values on the Create Article page
-      | FIELD | VALUE      |
-      | TITLE | Joe Bloggs |
+      | FIELD | VALUE                        |
+      | TITLE | Article Title <alpha_number> |
     And I press save and publish
     And I verify that the article was created successfully
     When I visit the Edit Article page
     Then I verify the structure of the Edit Article page
 
-  @article @api @regression @javascript
+  @article @api @regression
   Scenario: Validation rules on Create Article
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
@@ -36,13 +36,13 @@ Feature: Article page
     And I press save and publish
     Then I am still on the Create Article page
 
-  @article @api @regression @javascript
+  @article @api @regression
   Scenario: Validation rules on Edit Article
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
     When I enter the following values on the Create Article page
-      | FIELD | VALUE      |
-      | TITLE | Joe Bloggs |
+      | FIELD | VALUE                        |
+      | TITLE | Article Title <alpha_number> |
     And I press save and publish
     And I verify that the article was created successfully
     And I visit the Edit Article page
@@ -57,7 +57,7 @@ Feature: Article page
 ###  CREATE ARTICLE
 #########################################################################################
 
-  @article @api @smoke @bm
+  @article @api @smoke
   Scenario: Create an Article
     Given I am logged in as a user with the administrator role
     Then I am able to create an article content
@@ -75,7 +75,7 @@ Feature: Article page
     And I visit the Create Article page
     When I enter the following values on the Create Article page
       | FIELD | VALUE                                 |
-      | TITLE | Joe Bloggs                            |
+      | TITLE | Article Title <alpha_number>          |
       | BODY  | This is the body text of the Article. |
       | IMAGE | 150x350.jpg                           |
       | ALT   | ALT - 150x350.jpg                     |
@@ -97,14 +97,14 @@ Feature: Article page
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
     When I enter the following values on the Create Article page
-      | FIELD | VALUE      |
-      | TITLE | Joe Bloggs |
+      | FIELD | VALUE                        |
+      | TITLE | Article Title <alpha_number> |
     And I press save and publish
     And I verify that the article was created successfully
     Then I visit the Edit Article page
     And I enter the following values on the Edit Article page
-      | FIELD | VALUE     |
-      | TITLE | Sam Smith |
+      | FIELD | VALUE                               |
+      | TITLE | Article Title <alpha_number> edited |
     And I press save and keep published
     And I verify that the article was edited successfully
 
@@ -118,8 +118,8 @@ Feature: Article page
     Given I am logged in as a user with the administrator role
     And I visit the Create Article page
     When I enter the following values on the Create Article page
-      | FIELD | VALUE      |
-      | TITLE | Joe Bloggs |
+      | FIELD | VALUE                        |
+      | TITLE | Article Title <alpha_number> |
     And I press save and publish
     And I verify that the article was created successfully
     Then I visit the Delete Article page
@@ -137,14 +137,14 @@ Feature: Article page
     And I visit the Create Article page
     When I enter the following values on the Create Article page
       | FIELD | VALUE                                 |
-      | TITLE | Joe Bloggs                            |
+      | TITLE | Article Title <alpha_number>          |
       | BODY  | This is the body text of the Article. |
       | IMAGE | 150x350.jpg                           |
       | ALT   | ALT - 150x350.jpg                     |
     And I press save and publish
     Then I can see the following values on the View Article page
       | FIELD | VALUE                                 |
-      | TITLE | Joe Bloggs                            |
+      | TITLE | Article Title <alpha_number>          |
       | BODY  | This is the body text of the Article. |
       | IMAGE | 150x350.jpg                           |
       | ALT   | ALT - 150x350.jpg                     |

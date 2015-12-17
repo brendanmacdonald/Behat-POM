@@ -9,7 +9,7 @@ class ArticlePage {
   private $path = '/node/add/article';
 
   /**
-   * Fields visble in Create and Edit mode.
+   * Fields visible in Create and Edit mode.
    * @var array $fields
    */
   private $fields = array(
