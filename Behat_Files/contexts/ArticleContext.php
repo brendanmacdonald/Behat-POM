@@ -55,18 +55,6 @@ class ArticleContext implements Context {
   }
 
   /**
-   * @Given I complete the Create Article page with generic valid data
-   *
-   * @param string $username , $password
-   */
-  public function fill_in_article_content_with_generic_valid_data() {
-    self::fill_title_field('Article Title <alpha>');
-    self::fill_body_frame('This is some body text.');
-    self::attach_image('150x350.jpg');
-    self::fill_alt_field('This is some ALT text');
-  }
-
-  /**
    * @param string $title
    */
   public function fill_title_field($title) {
@@ -100,17 +88,15 @@ class ArticleContext implements Context {
   }
 
   /**
-   * @return string The /edit path for an Article.
+   * @Given I complete the Create Article page with generic valid data
+   *
+   * @param string $username , $password
    */
-  public function get_edit_path() {
-    return '/node/' . $this->article_node_id . '/edit/';
-  }
-
-  /**
-   * @return string The /delete path for an Article.
-   */
-  public function get_delete_path() {
-    return '/node/' . $this->article_node_id . '/delete/';
+  public function fill_in_article_content_with_generic_valid_data() {
+    self::fill_title_field('Article Title <alpha>');
+    self::fill_body_frame('This is the body text of the Article.');
+    self::attach_image('150x350.jpg');
+    self::fill_alt_field('This is some ALT text');
   }
 
   /**
@@ -132,6 +118,20 @@ class ArticleContext implements Context {
    */
   public function visit_delete_article_page() {
     $this->helper_context->visitPath(self::get_delete_path());
+  }
+
+  /**
+   * @return string The /edit path for an Article.
+   */
+  public function get_edit_path() {
+    return '/node/' . $this->article_node_id . '/edit/';
+  }
+
+  /**
+   * @return string The /delete path for an Article.
+   */
+  public function get_delete_path() {
+    return '/node/' . $this->article_node_id . '/delete/';
   }
 
   /**

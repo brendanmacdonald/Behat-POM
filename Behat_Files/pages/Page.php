@@ -23,21 +23,6 @@ class Page {
     'PREVIEW' => 'Preview'
   );
 
-
-
-
-
-
-  private $body_text = '';
-
-
-
-
-
-
-
-
-
   /**
    * A specific create button.
    * @return string
