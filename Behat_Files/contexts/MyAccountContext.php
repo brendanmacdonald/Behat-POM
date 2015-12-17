@@ -9,7 +9,7 @@ class MyAccountContext implements Context {
   /**
    * @var HelperContext
    */
-  private $HelperContext;
+  private $helper_context;
 
   /**
    * @var MyAccountPage
@@ -34,25 +34,25 @@ class MyAccountContext implements Context {
    */
   public function gather_contexts(BeforeScenarioScope $scope) {
     $environment = $scope->getEnvironment();
-    $this->HelperContext = $environment->getContext('HelperContext');
+    $this->helper_context = $environment->getContext('HelperContext');
   }
 
   /**
    * @Given I visit the my account page
    */
   public function visit_my_account_page() {
-    $this->HelperContext->visitPath($this->my_account_page->get_path());
+    $this->helper_context->visitPath($this->my_account_page->get_path());
   }
 
   /**
    * @Given I should be logged in successfully
    */
   public function i_should_be_logged_in_successfully() {
-    $this->HelperContext->iCanSeeInTheRegion('Manage', $this->my_account_page->get_region('TOOLBAR'));
-    $this->HelperContext->iCanSeeTheLinkInTheRegion('View', $this->my_account_page->get_region('CONTENT'));
-    $this->HelperContext->iCanSeeTheLinkInTheRegion('Shortcuts', $this->my_account_page->get_region('CONTENT'));
-    $this->HelperContext->iCanSeeInTheRegion('Edit', $this->my_account_page->get_region('CONTENT'));
-    $this->HelperContext->iCanSeeInTheRegion('Member for', $this->my_account_page->get_region('CONTENT'));
+    $this->helper_context->iCanSeeInTheRegion('Manage', $this->my_account_page->get_region('TOOLBAR'));
+    $this->helper_context->iCanSeeTheLinkInTheRegion('View', $this->my_account_page->get_region('CONTENT'));
+    $this->helper_context->iCanSeeTheLinkInTheRegion('Shortcuts', $this->my_account_page->get_region('CONTENT'));
+    $this->helper_context->iCanSeeInTheRegion('Edit', $this->my_account_page->get_region('CONTENT'));
+    $this->helper_context->iCanSeeInTheRegion('Member for', $this->my_account_page->get_region('CONTENT'));
   }
 
   /**
@@ -60,7 +60,7 @@ class MyAccountContext implements Context {
    */
   public function assert_my_account_page_structure() {
     foreach ($this->my_account_page->get_all_regions() as $region) {
-      $this->HelperContext->minkContext->assertElementOnPage($region);
+      $this->helper_context->minkContext->assertElementOnPage($region);
     }
   }
 }

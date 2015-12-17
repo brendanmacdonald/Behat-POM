@@ -73,6 +73,12 @@ class HelperContext extends RawDrupalContext implements SnippetAcceptingContext 
    */
   public $pageElements = array();
 
+  /**
+   * The current Behat scenario.
+   * @var string
+   */
+  public $currentScenario;
+
   /*******************************************************************************
    * Start of INITIALISATION functions.
    *******************************************************************************/
@@ -98,6 +104,8 @@ class HelperContext extends RawDrupalContext implements SnippetAcceptingContext 
   public function gatherContexts(BeforeScenarioScope $scope) {
     $environment = $scope->getEnvironment();
     $this->minkContext = $environment->getContext('Drupal\DrupalExtension\Context\MinkContext');
+
+    $this->currentScenario = $scope->getScenario();
   }
 
   /**
@@ -132,24 +140,28 @@ class HelperContext extends RawDrupalContext implements SnippetAcceptingContext 
     if (self::ERROR_CODE === $scope->getTestResult()->getResultCode()) {
       $driver = $this->getSession()->getDriver();
 
-      // Get the text of the failed step.
-      $failed_test_step = $scope->getStep()->getText();
+      // Get the name of the feature file.
+      $featureFolder = str_replace(' ', '', $scope->getFeature()->getTitle());
 
-      // Remove quotes from the test step name.
-      $failed_test_step = str_replace('"', '', $failed_test_step);
+      // Get the name of the failed test.
+      $scenarioName = $this->currentScenario->getTitle();
+      $failedTest = str_replace(' ', '', $scenarioName);
 
-      // Set the screenshot location.
-      $filePath = $this->parameters['screenshots'];
+      // Set the screenshot folder.
+      $filePath = $this->parameters['screenshots'] . '/' . $featureFolder;
+      if (!file_exists($filePath)) {
+        mkdir($filePath);
+      }
 
       if ($driver instanceof \Behat\Mink\Driver\BrowserKitDriver) {
         $html_data = $this->getSession()->getDriver()->getContent();
-        $fileName = date(self::DATE_FORMAT_CONCISE) . '-' . $failed_test_step . '.html';
+        $fileName = date(self::DATE_FORMAT_CONCISE) . '-' . $failedTest . '.html';
         file_put_contents($filePath . '/' . $fileName, $html_data);
         return;
       }
 
       if ($driver instanceof \Behat\Mink\Driver\Selenium2Driver) {
-        $fileName = date(self::DATE_FORMAT_CONCISE) . '-' . $failed_test_step . '.jpg';
+        $fileName = date(self::DATE_FORMAT_CONCISE) . '-' . $failedTest . '.jpg';
         $this->saveScreenshot($fileName, $filePath);
         return;
       }

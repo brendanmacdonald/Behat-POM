@@ -5,13 +5,33 @@ Feature: Login page
 
 
 #########################################################################################
-###  VALIDATIONS
+###  VALIDATE LAYOUT AND MANDATORY FIELDS
 #########################################################################################
 
   @login @api @regression
   Scenario: Verify the structure of the login page
     Given I visit the Login page
     Then I verify the structure of the Login page
+
+  @login @api @regression
+  Scenario: Validation rules - missing username and password
+    Given I visit the Login page
+    When I press login
+    Then I am still on the Login page
+
+  @login @api @regression
+  Scenario: Validation rules - missing password
+    Given I visit the Login page
+    And I enter the username username
+    When I press login
+    Then I am still on the Login page
+
+  @login @api @regression
+  Scenario: Validation rules - missing username
+    Given I visit the Login page
+    And I enter the password password
+    When I press login
+    Then I am still on the Login page
 
 
 #########################################################################################

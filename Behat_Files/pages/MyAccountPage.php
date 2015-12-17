@@ -1,7 +1,6 @@
 <?php
 
-class MyAccountPage
-{
+class MyAccountPage {
   /**
    * @var string $path
    */
@@ -16,8 +15,10 @@ class MyAccountPage
    * @var array $regions
    */
   private $regions = array(
+    'HEADER' => '.header-content',
     'TOOLBAR' => '#toolbar-bar',
-    'CONTENT' => '.layout-content'
+    'CONTENT' => '.layout-content',
+    'FOOTER' => '.layout-container>footer'
   );
 
   /**

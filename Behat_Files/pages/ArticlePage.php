@@ -9,7 +9,7 @@ class ArticlePage {
   private $path = '/node/add/article';
 
   /**
-   * Fields visible in Create and Edit mode.
+   * Fields visble in Create and Edit mode.
    * @var array $fields
    */
   private $fields = array(
@@ -145,11 +145,11 @@ class ArticlePage {
   }
 
   /**
-   * All edit links.
-   * @return array
+   * A specific create button.
+   * @return string
    */
-  function get_all_edit_links() {
-    return $this->edit_links;
+  function get_edit_button($button) {
+    return $this->edit_buttons[$button];
   }
 
   /**
@@ -161,11 +161,11 @@ class ArticlePage {
   }
 
   /**
-   * A specific create button.
-   * @return string
+   * All edit links.
+   * @return array
    */
-  function get_edit_button($button) {
-    return $this->edit_buttons[$button];
+  function get_all_edit_links() {
+    return $this->edit_links;
   }
 
   /**
@@ -185,6 +185,14 @@ class ArticlePage {
   }
 
   /**
+   * A specific message region.
+   * @return string
+   */
+  function get_message_region($region) {
+    return $this->message_regions[$region];
+  }
+
+  /**
    * All frames.
    * @return array
    */
@@ -198,13 +206,5 @@ class ArticlePage {
    */
   function get_frame($frame) {
     return $this->frames[$frame];
-  }
-
-  /**
-   * A specific message region.
-   * @return string
-   */
-  function get_message_region($region) {
-    return $this->message_regions[$region];
   }
 }

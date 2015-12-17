@@ -5,7 +5,7 @@ Feature: Article page
 
 
 #########################################################################################
-###  VALIDATIONS
+###  VALIDATE LAYOUT AND MANDATORY FIELDS
 #########################################################################################
 
   @article @api @regression @javascript
