@@ -15,6 +15,7 @@ Optional Step
 =============
 This is only required if you want to run tests on Chrome. 
 (By default, Firefox works out-of-the-box.)
+
 1. Download chromedriver from http://chromedriver.storage.googleapis.com/index.html?path=2.17/
 2. Save it to /usr/local/bin
 
