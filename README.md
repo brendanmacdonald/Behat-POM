@@ -1,16 +1,14 @@
-# Behat-POM
-
-AUTOMATION TESTS
-======================
+BEHAT SETUP & EXECUTION
+=======================
 
 Tool setup
 ==========
 1. Install Behat:
-    - ./bootstrap.sh
+  - ./bootstrap.sh
     
 2. Inside 'Behat/behat.local.yml', update:
-    - the 'base_url' to your local site url
-    - the 'drupal_root' value to the path to your local drupal installation.
+  - the 'base_url' to your local site url
+  - the 'drupal_root' value to the path to your local drupal installation.
        
 
 Optional Step
@@ -26,9 +24,9 @@ Test Execution
 1. Open a terminal window.
 2. Navigate to <LOCAL DRUPAL INSTALL>/cw_test/Behat
 3. To execute the tests, select one of the following options based on the format 'sh run-behat.sh <tag> <profile>':
-    - ./run-behat.sh regression firefox
+  - ./run-behat.sh regression firefox
 or
-    - ./run-behat.sh regression chrome
+  - ./run-behat.sh regression chrome
 
 
 Test Results

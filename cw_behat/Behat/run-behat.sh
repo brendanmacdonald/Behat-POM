@@ -12,9 +12,10 @@ SCENARIO_NAME=$3
 ###    HELP OPTION
 ##############################################################################
 if [ "$1" == "-h" ]; then
-  printf 'To execute all tests on firefox:\nsh run-behat.sh regression firefox\n'
-  printf '\nTo execute all tests on chrome:\nsh run-behat.sh regression chrome\n'
-  printf '\nTo execute a specific named test:\nsh run-behat.sh regression firefox \"name_of_test\"\n'
+  printf 'Usage:    ./run-behat.sh [tag] [profile]\n\n'
+  printf 'To execute all tests on firefox:\n    ./run-behat.sh regression firefox\n'
+  printf '\nTo execute all tests on chrome:\n   ./run-behat.sh regression chrome\n'
+  printf '\nTo execute a specific named test:\n   ./run-behat.sh regression firefox \"name_of_test\"\n'
   exit 0
 fi
 
@@ -24,7 +25,7 @@ fi
 ##############################################################################
 if [ -z $PROFILE ] || [ -z $TAG ]
 then
-   printf 'ERROR: Expected Tag followed by Profile.\nE.g. sh run-behat.sh <tag> <profile>\n'
+   printf 'ERROR: Expected Tag followed by Profile.\nE.g. ./run-behat.sh [tag] [profile]\n'
    exit 0
 fi
 
@@ -35,8 +36,8 @@ fi
 rsync ../../Behat_Files/behat.yml features/..
 rsync ../../Behat_Files/contexts/*.php features/bootstrap
 rsync -a ../../Behat_Files/features/* features/
-rsync -a  ../../Behat_Files/images ../Behat
-rsync -a  ../../Behat_Files/pages ../Behat
+rsync -a ../../Behat_Files/images ../Behat
+rsync -a ../../Behat_Files/pages ../Behat
 
 
 ##############################################################################
