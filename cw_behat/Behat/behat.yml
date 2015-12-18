@@ -54,7 +54,8 @@ default:
        print_outp: true
        loop_break: true
   formatters:
-    pretty: true
+    #pretty: true
+    progress: true
     html:
       output_path: %paths.base%/../Results/Behat
 

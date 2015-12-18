@@ -1,9 +1,7 @@
 {
   "require": {
-    "behat/behat": "3.0.15",
+    "behat/behat": "3.0.6",
     "drupal/drupal-extension": "~3.0",
-    "guzzlehttp/ringphp": "1.0.0",
-    "guzzlehttp/streams": "~3.0",
     "emuse/behat-html-formatter": "0.1.0",
     "phpunit/phpunit": "*"
   },

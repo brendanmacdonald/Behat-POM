@@ -148,7 +148,7 @@ class HelperContext extends RawDrupalContext implements SnippetAcceptingContext 
       $failedTest = str_replace(' ', '', $scenarioName);
 
       // Set the screenshot folder.
-      $filePath = $this->parameters['screenshots'] . '/' . $featureFolder;
+      $filePath = $this->parameters['screenshot_path'] . '/' . $featureFolder;
       if (!file_exists($filePath)) {
         mkdir($filePath);
       }

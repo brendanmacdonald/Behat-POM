@@ -6,18 +6,17 @@ AUTOMATION TESTS
 Tool setup
 ==========
 1. Install Behat:
-    - ./bootstrap-D7.sh (to test on Drupal 7)
-    or
-    - ./bootstrap-D8.sh (to test on Drupal 8)
+    - ./bootstrap-D7.sh
     
-2. Modify your local Behat configuration file. 
-Inside 'Behat/behat.local.yml', update:
-    - the base_url to your local site url
+2. Inside 'Behat/behat.local.yml', update:
+    - the 'base_url' to your local site url
     - the 'drupal_root' value to the path to your local drupal installation.
        
 
 Optional Step
 =============
+This is only required if you want to run tests on Chrome. 
+(By default, Firefox works out-of-the-box.)
 1. Download chromedriver from http://chromedriver.storage.googleapis.com/index.html?path=2.17/
 2. Save it to /usr/local/bin
 
@@ -34,5 +33,5 @@ or
 
 Test Results
 ============
-The results of all tests will be stored in <LOCAL DRUPAL INSTALL>/cw_test/Results.
+The results of all tests will be stored in <LOCAL DRUPAL INSTALL>/cw_test/Results/Twig_***.html
 

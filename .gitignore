@@ -3,7 +3,7 @@
 
 # Ignore files/directories created by installs
 cache
-bin
+cw_behat/Behat/bin
 cw_behat/Behat/vendor
 cw_behat/Behat/pages
 cw_behat/Behat/images
