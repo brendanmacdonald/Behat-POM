@@ -6,7 +6,7 @@ AUTOMATION TESTS
 Tool setup
 ==========
 1. Install Behat:
-    - ./bootstrap-D7.sh
+    - ./bootstrap.sh
     
 2. Inside 'Behat/behat.local.yml', update:
     - the 'base_url' to your local site url
