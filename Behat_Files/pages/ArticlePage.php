@@ -84,7 +84,7 @@ class ArticlePage {
    * The path to the Article Content type.
    * @return string
    */
-  function get_path() {
+  public function get_path() {
     return $this->path;
   }
 
@@ -92,7 +92,7 @@ class ArticlePage {
    * All fields.
    * @return array
    */
-  function get_all_fields() {
+  public function get_all_fields() {
     return $this->fields;
   }
 
@@ -100,7 +100,7 @@ class ArticlePage {
    * A specific field.
    * @return string
    */
-  function get_field($field) {
+  public function get_field($field) {
     return $this->fields[$field];
   }
 
@@ -108,7 +108,7 @@ class ArticlePage {
    * All hidden fields.
    * @return array
    */
-  function get_all_hidden_fields() {
+  public function get_all_hidden_fields() {
     return $this->hidden_fields;
   }
 
@@ -116,7 +116,7 @@ class ArticlePage {
    * A specific hidden field.
    * @return string
    */
-  function get_hidden_field($hidden_field) {
+  public function get_hidden_field($hidden_field) {
     return $this->hidden_fields[$hidden_field];
   }
 
@@ -124,7 +124,7 @@ class ArticlePage {
    * All create buttons.
    * @return array
    */
-  function get_all_create_buttons() {
+  public function get_all_create_buttons() {
     return $this->create_buttons;
   }
 
@@ -132,7 +132,7 @@ class ArticlePage {
    * A specific create button.
    * @return string
    */
-  function get_create_button($button) {
+  public function get_create_button($button) {
     return $this->create_buttons[$button];
   }
 
@@ -140,7 +140,7 @@ class ArticlePage {
    * All edit buttons.
    * @return array
    */
-  function get_all_edit_buttons() {
+  public function get_all_edit_buttons() {
     return $this->edit_buttons;
   }
 
@@ -148,7 +148,7 @@ class ArticlePage {
    * A specific create button.
    * @return string
    */
-  function get_edit_button($button) {
+  public function get_edit_button($button) {
     return $this->edit_buttons[$button];
   }
 
@@ -156,7 +156,7 @@ class ArticlePage {
    * A specific edit link.
    * @return string
    */
-  function get_edit_link($link) {
+  public function get_edit_link($link) {
     return $this->edit_links[$link];
   }
 
@@ -164,7 +164,7 @@ class ArticlePage {
    * All edit links.
    * @return array
    */
-  function get_all_edit_links() {
+  public function get_all_edit_links() {
     return $this->edit_links;
   }
 
@@ -172,7 +172,7 @@ class ArticlePage {
    * All regions.
    * @return array
    */
-  function get_all_regions() {
+  public function get_all_regions() {
     return $this->regions;
   }
 
@@ -180,7 +180,7 @@ class ArticlePage {
    * A specific region.
    * @return string
    */
-  function get_region($region) {
+  public function get_region($region) {
     return $this->regions[$region];
   }
 
@@ -188,7 +188,7 @@ class ArticlePage {
    * A specific message region.
    * @return string
    */
-  function get_message_region($region) {
+  public function get_message_region($region) {
     return $this->message_regions[$region];
   }
 
@@ -196,7 +196,7 @@ class ArticlePage {
    * All frames.
    * @return array
    */
-  function get_all_frames() {
+  public function get_all_frames() {
     return $this->frames;
   }
 
@@ -204,7 +204,7 @@ class ArticlePage {
    * A specific frame.
    * @return string
    */
-  function get_frame($frame) {
+  public function get_frame($frame) {
     return $this->frames[$frame];
   }
 }

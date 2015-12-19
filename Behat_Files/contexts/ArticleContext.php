@@ -1,21 +1,8 @@
 <?php
 
-use Behat\Behat\Context\Context;
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
-use PHPUnit_Framework_Assert as Assertions;
 
-class ArticleContext implements Context {
-
-  /**
-   * @var HelperContext
-   */
-  private $helper_context;
-
-  /**
-   * @var PageContext
-   */
-  private $page_context;
+class ArticleContext extends PageContext {
 
   /**
    * @var ArticlePage
@@ -33,31 +20,17 @@ class ArticleContext implements Context {
   private $article_node_id;
 
   /**
-   * Initializes context.
-   *
-   * Every scenario gets its own context instance.
-   * You can also pass arbitrary arguments to the
-   * context constructor through behat.yml.
+   * ArticleContext constructor.
    */
   public function __construct() {
+    parent::__construct();
     $this->article_page = new ArticlePage();
-  }
-
-  /**
-   * @BeforeScenario
-   *
-   * Allow access to the HelperContext.
-   */
-  public function gather_contexts(BeforeScenarioScope $scope) {
-    $environment = $scope->getEnvironment();
-    $this->helper_context = $environment->getContext('HelperContext');
-    $this->page_context = $environment->getContext('PageContext');
   }
 
   /**
    * @param string $title
    */
-  public function fill_title_field($title) {
+  private function fill_title_field($title) {
     $this->helper_context->iFillInFieldByIDWith($this->article_page->get_field('TITLE'), $title);
     $this->article_page_title = $this->helper_context->getSession()
       ->getPage()
@@ -68,14 +41,14 @@ class ArticleContext implements Context {
   /**
    * @param string $body
    */
-  public function fill_body_frame($body) {
+  private function fill_body_frame($body) {
     $this->helper_context->iFillInFrameWith($this->article_page->get_frame('BODY'), $body);
   }
 
   /**
    * @param string $image
    */
-  public function attach_image($image) {
+  private function attach_image($image) {
     $this->helper_context->minkContext->attachFileToField($this->article_page->get_field('IMAGE'), $image);
     $this->helper_context->waitForJquery();
   }
@@ -83,8 +56,22 @@ class ArticleContext implements Context {
   /**
    * @param string $alt
    */
-  public function fill_alt_field($alt) {
+  private function fill_alt_field($alt) {
     $this->helper_context->iFillInFieldByDataDrupalSelectorWith($this->article_page->get_hidden_field('ALT'), $alt);
+  }
+
+  /**
+   * @Given I press save and publish
+   */
+  public function i_press_save_and_publish() {
+    $this->press_save_and_publish_button();
+  }
+
+  /**
+   * @Given I press save and keep published
+   */
+  public function i_press_save_and_keep_published() {
+    $this->press_save_and_keep_published_button();
   }
 
   /**
@@ -123,14 +110,14 @@ class ArticleContext implements Context {
   /**
    * @return string The /edit path for an Article.
    */
-  public function get_edit_path() {
+  private function get_edit_path() {
     return '/node/' . $this->article_node_id . '/edit/';
   }
 
   /**
    * @return string The /delete path for an Article.
    */
-  public function get_delete_path() {
+  private function get_delete_path() {
     return '/node/' . $this->article_node_id . '/delete/';
   }
 
@@ -182,19 +169,19 @@ class ArticleContext implements Context {
    * @Given I verify the structure of the Create Article page
    */
   public function i_verify_the_structure_of_the_create_article_page() {
-    $this->page_context->verify_fields($this->article_page->get_all_fields());
-    $this->page_context->verify_frames($this->article_page->get_all_frames());
-    $this->page_context->verify_buttons($this->article_page->get_all_create_buttons());
+    $this->verify_fields($this->article_page->get_all_fields());
+    $this->verify_frames($this->article_page->get_all_frames());
+    $this->verify_buttons($this->article_page->get_all_create_buttons());
   }
 
   /**
    * @Given I verify the structure of the Edit Article page
    */
   public function i_verify_the_structure_of_the_edit_article_page() {
-    $this->page_context->verify_fields($this->article_page->get_all_fields());
-    $this->page_context->verify_frames($this->article_page->get_all_frames());
-    $this->page_context->verify_buttons($this->article_page->get_all_edit_buttons());
-    $this->page_context->verify_links($this->article_page->get_all_edit_links());
+    $this->verify_fields($this->article_page->get_all_fields());
+    $this->verify_frames($this->article_page->get_all_frames());
+    $this->verify_buttons($this->article_page->get_all_edit_buttons());
+    $this->verify_links($this->article_page->get_all_edit_links());
   }
 
   /**

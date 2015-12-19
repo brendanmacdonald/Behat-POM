@@ -1,15 +1,7 @@
 <?php
 
-use Behat\Behat\Context\Context;
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use PHPUnit_Framework_Assert as Assertions;
 
-class MyAccountContext implements Context {
-
-  /**
-   * @var HelperContext
-   */
-  private $helper_context;
+class MyAccountContext extends PageContext {
 
   /**
    * @var MyAccountPage
@@ -17,24 +9,11 @@ class MyAccountContext implements Context {
   private $my_account_page;
 
   /**
-   * Initializes context.
-   *
-   * Every scenario gets its own context instance.
-   * You can also pass arbitrary arguments to the
-   * context constructor through behat.yml.
+   * MyAccountContext constructor.
    */
   public function __construct() {
+    parent::__construct();
     $this->my_account_page = new MyAccountPage();
-  }
-
-  /**
-   * @BeforeScenario
-   *
-   * Allow access to the HelperContext.
-   */
-  public function gather_contexts(BeforeScenarioScope $scope) {
-    $environment = $scope->getEnvironment();
-    $this->helper_context = $environment->getContext('HelperContext');
   }
 
   /**

@@ -1,12 +1,12 @@
 <?php
 
-class LoginPage {
+class LoginPage extends Page {
 
   /**
    * The path to the Login page.
    * @var string $path
    */
-  public $path = '/user/login';
+  private $path = '/user/login';
 
   /**
    * Fields visible on Login screen.
@@ -45,7 +45,7 @@ class LoginPage {
    * The path.
    * @return string
    */
-  function get_path() {
+  public function get_path() {
     return $this->path;
   }
 
@@ -53,7 +53,7 @@ class LoginPage {
    * All fields.
    * @return array
    */
-  function get_all_fields() {
+  public function get_all_fields() {
     return $this->fields;
   }
 
@@ -61,7 +61,7 @@ class LoginPage {
    * A specific field.
    * @return string
    */
-  function get_field($field) {
+  public function get_field($field) {
     return $this->fields[$field];
   }
 
@@ -69,7 +69,7 @@ class LoginPage {
    * All buttons.
    * @return array
    */
-  function get_all_buttons() {
+  public function get_all_buttons() {
     return $this->buttons;
   }
 
@@ -77,7 +77,7 @@ class LoginPage {
    * A specific button.
    * @return string
    */
-  function get_button($button) {
+  public function get_button($button) {
     return $this->buttons[$button];
   }
 
@@ -85,7 +85,7 @@ class LoginPage {
    * All regions.
    * @return array
    */
-  function get_all_regions() {
+  public function get_all_regions() {
     return $this->regions;
   }
 
@@ -93,7 +93,7 @@ class LoginPage {
    * A specific region.
    * @return string
    */
-  function get_region($region) {
+  public function get_region($region) {
     return $this->regions[$region];
   }
 
@@ -101,7 +101,7 @@ class LoginPage {
    * A specific message region.
    * @return string
    */
-  function get_message_region($region) {
+  public function get_message_region($region) {
     return $this->message_regions[$region];
   }
 }

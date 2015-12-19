@@ -9,7 +9,7 @@ class PageContext implements Context {
   /**
    * @var HelperContext
    */
-  private $helper_context;
+  public $helper_context;
 
   /**
    * @var Page
@@ -17,11 +17,7 @@ class PageContext implements Context {
   private $page;
 
   /**
-   * Initializes context.
-   *
-   * Every scenario gets its own context instance.
-   * You can also pass arbitrary arguments to the
-   * context constructor through behat.yml.
+   * PageContext constructor.
    */
   public function __construct() {
     $this->page = new Page();
@@ -41,7 +37,7 @@ class PageContext implements Context {
    * Verify the fields displayed on the screen.
    * @param $fields
    */
-  function verify_fields($fields) {
+  protected function verify_fields($fields) {
     foreach ($fields as $field) {
       Assertions::assertTrue($this->helper_context->getSession()
         ->getPage()
@@ -53,7 +49,7 @@ class PageContext implements Context {
    * Verify the frames displayed on the screen.
    * @param $frames
    */
-  function verify_frames($frames) {
+  protected function verify_frames($frames) {
     foreach ($frames as $frame) {
       Assertions::assertTrue($this->helper_context->hasFrame($frame), $frame . ' frame not found');
     }
@@ -63,7 +59,7 @@ class PageContext implements Context {
    * Verify the buttons displayed on the screen.
    * @param $buttons
    */
-  function verify_buttons($buttons) {
+  protected function verify_buttons($buttons) {
     foreach ($buttons as $button) {
       Assertions::assertTrue($this->helper_context->getSession()
         ->getPage()
@@ -75,16 +71,17 @@ class PageContext implements Context {
    * Verify the regions displayed on the screen.
    * @param $regions
    */
-  function verify_regions($regions) {
+  protected function verify_regions($regions) {
     foreach ($regions as $region) {
       $this->helper_context->minkContext->assertElementOnPage($region);
     }
   }
+
   /**
    * Verify the links displayed on the screen.
    * @param $links
    */
-  function verify_links($links) {
+  protected function verify_links($links) {
     foreach ($links as $link) {
       Assertions::assertTrue($this->helper_context->getSession()
         ->getPage()
@@ -93,18 +90,18 @@ class PageContext implements Context {
   }
 
   /**
-   * @Given I press save and publish
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
    */
-  public function press_save_and_publish_button() {
+  protected function press_save_and_publish_button() {
     $this->helper_context->getSession()
       ->getPage()
       ->pressButton($this->page->get_create_button('SAVE_AND_PUBLISH'));
   }
 
   /**
-   * @Given I press save and keep published
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
    */
-  public function press_save_and_keep_published_button() {
+  protected function press_save_and_keep_published_button() {
     $this->helper_context->getSession()
       ->getPage()
       ->pressButton($this->page->get_edit_button('SAVE_AND_KEEP_PUBLISHED'));

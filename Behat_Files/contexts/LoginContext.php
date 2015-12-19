@@ -1,19 +1,6 @@
 <?php
 
-use Behat\Behat\Context\Context;
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-
-class LoginContext implements Context {
-
-  /**
-   * @var HelperContext
-   */
-  private $helper_context;
-
-  /**
-   * @var PageContext
-   */
-  private $page_context;
+class LoginContext extends PageContext  {
 
   /**
    * @var LoginPage
@@ -21,25 +8,11 @@ class LoginContext implements Context {
   private $login_page;
 
   /**
-   * Initializes context.
-   *
-   * Every scenario gets its own context instance.
-   * You can also pass arbitrary arguments to the
-   * context constructor through behat.yml.
+   * LoginContext constructor.
    */
   public function __construct() {
+    parent::__construct();
     $this->login_page = new LoginPage();
-  }
-
-  /**
-   * @BeforeScenario
-   *
-   * Allow access to the HelperContext.
-   */
-  public function gather_contexts(BeforeScenarioScope $scope) {
-    $environment = $scope->getEnvironment();
-    $this->helper_context = $environment->getContext('HelperContext');
-    $this->page_context = $environment->getContext('PageContext');
   }
 
   /**
@@ -50,22 +23,20 @@ class LoginContext implements Context {
   }
 
   /**
-   * @Given I enter the username :username
-   *
    * @param $username
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
    */
-  public function fill_username_field($username) {
+  private function fill_username_field($username) {
     $this->helper_context->getSession()
       ->getPage()
       ->fillField($this->login_page->get_field('USERNAME'), $username);
   }
 
   /**
-   * @Given I enter the password :password
-   *
    * @param $password
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
    */
-  public function fill_password_field($password) {
+  private function fill_password_field($password) {
     $this->helper_context->getSession()
       ->getPage()
       ->fillField($this->login_page->get_field('PASSWORD'), $password);
@@ -74,10 +45,27 @@ class LoginContext implements Context {
   /**
    * @throws \Behat\Mink\Exception\ElementNotFoundException
    */
-  function press_login_button() {
+  private function press_login_button() {
     $this->helper_context->getSession()
       ->getPage()
       ->pressButton($this->login_page->get_button('LOG_IN'));
+  }
+
+  /**
+   * @Given I enter the username :username
+   *
+   * @param string $username
+   */
+  public function i_enter_a_username($username) {
+    self::fill_username_field($username);
+  }
+  /**
+   * @Given I enter the password :password
+   *
+   * @param string $password
+   */
+  public function i_enter_a_password($password) {
+    self::fill_password_field($password);
   }
 
   /**
@@ -90,6 +78,14 @@ class LoginContext implements Context {
     self::fill_password_field($password);
   }
 
+
+  /**
+   * @Given I press login
+   */
+  public function i_press_the_login_button() {
+    self::press_login_button();
+  }
+
   /**
    * @Given I am still on the Login page
    */
@@ -98,13 +94,6 @@ class LoginContext implements Context {
     if (strpos($current_url, $this->login_page->get_path()) === FALSE) {
       throw new CWContextException("No longer on the Loginpage, but on {$current_url}.");
     }
-  }
-
-  /**
-   * @Given I press login
-   */
-  public function i_press_the_login_button() {
-    self::press_login_button();
   }
 
   /**
@@ -119,9 +108,9 @@ class LoginContext implements Context {
    * @Given I verify the structure of the Login page
    */
   public function i_verify_the_structure_of_the_login_page() {
-    $this->page_context->verify_fields($this->login_page->get_all_fields());
-    $this->page_context->verify_buttons($this->login_page->get_all_buttons());
-    $this->page_context->verify_regions($this->login_page->get_all_regions());
+    $this->verify_fields($this->login_page->get_all_fields());
+    $this->verify_buttons($this->login_page->get_all_buttons());
+    $this->verify_regions($this->login_page->get_all_regions());
   }
 }
 

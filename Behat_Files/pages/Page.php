@@ -27,7 +27,7 @@ class Page {
    * A specific create button.
    * @return string
    */
-  function get_create_button($button) {
+  public function get_create_button($button) {
     return $this->create_buttons[$button];
   }
 
@@ -35,7 +35,7 @@ class Page {
    * A specific create button.
    * @return string
    */
-  function get_edit_button($button) {
+  public function get_edit_button($button) {
     return $this->edit_buttons[$button];
   }
 }
