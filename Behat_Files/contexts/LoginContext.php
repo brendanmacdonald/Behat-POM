@@ -108,9 +108,9 @@ class LoginContext extends PageContext  {
    * @Given I verify the structure of the Login page
    */
   public function i_verify_the_structure_of_the_login_page() {
-    $this->verify_fields($this->login_page->get_all_fields());
-    $this->verify_buttons($this->login_page->get_all_buttons());
-    $this->verify_regions($this->login_page->get_all_regions());
+    self::verify_fields($this->login_page->get_all_fields());
+    self::verify_buttons($this->login_page->get_all_buttons());
+    self::verify_regions($this->login_page->get_all_regions());
   }
 }
 

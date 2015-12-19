@@ -169,19 +169,19 @@ class ArticleContext extends PageContext {
    * @Given I verify the structure of the Create Article page
    */
   public function i_verify_the_structure_of_the_create_article_page() {
-    $this->verify_fields($this->article_page->get_all_fields());
-    $this->verify_frames($this->article_page->get_all_frames());
-    $this->verify_buttons($this->article_page->get_all_create_buttons());
+    self::verify_fields($this->article_page->get_all_fields());
+    self::verify_frames($this->article_page->get_all_frames());
+    self::verify_buttons($this->article_page->get_all_create_buttons());
   }
 
   /**
    * @Given I verify the structure of the Edit Article page
    */
   public function i_verify_the_structure_of_the_edit_article_page() {
-    $this->verify_fields($this->article_page->get_all_fields());
-    $this->verify_frames($this->article_page->get_all_frames());
-    $this->verify_buttons($this->article_page->get_all_edit_buttons());
-    $this->verify_links($this->article_page->get_all_edit_links());
+    self::verify_fields($this->article_page->get_all_fields());
+    self::verify_frames($this->article_page->get_all_frames());
+    self::verify_buttons($this->article_page->get_all_edit_buttons());
+    self::verify_links($this->article_page->get_all_edit_links());
   }
 
   /**
