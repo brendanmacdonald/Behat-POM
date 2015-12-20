@@ -150,17 +150,21 @@ class ArticleContext extends PageContext {
       $field = trim($value['FIELD']);
       $value = trim($value['VALUE']);
 
-      if ($field == 'TITLE') {
-        self::fill_title_field($value);
-      }
-      if ($field == 'BODY') {
-        self::fill_body_frame($value);
-      }
-      if ($field == 'IMAGE') {
-        self::attach_image($value);
-      }
-      if ($field == 'ALT') {
-        self::fill_alt_field($value);
+      switch ($field) {
+        case 'TITLE':
+          self::fill_title_field($value);
+          break;
+        case 'BODY':
+          self::fill_body_frame($value);
+          break;
+        case 'IMAGE':
+          self::attach_image($value);
+          break;
+        case 'ALT':
+          self::fill_alt_field($value);
+          break;
+        default:
+          throw new CWContextException("The field {$field} does not exist on this page.");
       }
     }
   }
