@@ -22,35 +22,39 @@ class MyAccountPage {
   );
 
   /**
-   * @return string The path.
+   * The path.
+   * @return string
    */
   public function get_path() {
     return $this->path;
   }
 
   /**
-   * @return array All fields.
+   * All fields.
+   * @return array
    */
   public function get_all_fields() {
     return $this->fields;
   }
 
   /**
-   * @return string A specific field.
+   * A specific field.
+   * @return string
    */
   public function get_field($field) {
     return $this->fields[$field];
   }
 
-  /**
-   * @return array All regions.
+  /** All regions.
+   * @return array
    */
   public function get_all_regions() {
     return $this->regions;
   }
 
   /**
-   * @return string A specific region.
+   * A specific region.
+   * @return string
    */
   public function get_region($region) {
     return $this->regions[$region];

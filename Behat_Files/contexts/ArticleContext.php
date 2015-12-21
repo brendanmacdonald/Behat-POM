@@ -119,21 +119,24 @@ class ArticleContext extends PageContext {
   }
 
   /**
-   * @return string The /edit path for an Article.
+   * The /edit path for an Article.
+   * @return string
    */
   private function get_edit_path() {
     return '/node/' . $this->article_node_id . '/edit/';
   }
 
   /**
-   * @return string The /delete path for an Article.
+   * The /delete path for an Article.
+   * @return string
    */
   private function get_delete_path() {
     return '/node/' . $this->article_node_id . '/delete/';
   }
 
   /**
-   * @return string The view path for an Article.
+   * The view path for an Article.
+   * @return string
    */
   private function get_view_path() {
     return '/node/' . $this->article_node_id;
