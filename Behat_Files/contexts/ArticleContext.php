@@ -64,14 +64,18 @@ class ArticleContext extends PageContext {
    * @Given I press save and publish
    */
   public function i_press_save_and_publish() {
-    $this->press_save_and_publish_button();
+    $this->helper_context->getSession()
+      ->getPage()
+      ->pressButton($this->article_page->get_create_button('SAVE_AND_PUBLISH'));
   }
 
   /**
    * @Given I press save and keep published
    */
   public function i_press_save_and_keep_published() {
-    $this->press_save_and_keep_published_button();
+    $this->helper_context->getSession()
+      ->getPage()
+      ->pressButton($this->article_page->get_edit_button('SAVE_AND_KEEP_PUBLISHED'));
   }
 
   /**
@@ -108,6 +112,13 @@ class ArticleContext extends PageContext {
   }
 
   /**
+   * @Given I visit the View Article page
+   */
+  public function visit_view_article_page() {
+    $this->helper_context->visitPath(self::get_view_path());
+  }
+
+  /**
    * @return string The /edit path for an Article.
    */
   private function get_edit_path() {
@@ -119,6 +130,13 @@ class ArticleContext extends PageContext {
    */
   private function get_delete_path() {
     return '/node/' . $this->article_node_id . '/delete/';
+  }
+
+  /**
+   * @return string The view path for an Article.
+   */
+  private function get_view_path() {
+    return '/node/' . $this->article_node_id;
   }
 
   /**
@@ -240,6 +258,20 @@ class ArticleContext extends PageContext {
    */
   public function i_verify_that_the_article_was_deleted_successfully() {
     $this->helper_context->iCanSeeInTheRegion('The Article ' . $this->article_page_title . ' has been deleted.', $this->article_page->get_message_region('SUCCESS_MESSAGE_REGION'));
+  }
+
+  /**
+   * @Given I verify the header
+   */
+  public function i_verify_the_header() {
+    self::verify_header();
+  }
+
+  /**
+   * @Given I verify the footer
+   */
+  public function i_verify_the_footer() {
+    self::verify_footer();
   }
 }
 

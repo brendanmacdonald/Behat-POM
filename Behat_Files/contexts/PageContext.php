@@ -90,21 +90,19 @@ class PageContext implements Context {
   }
 
   /**
-   * @throws \Behat\Mink\Exception\ElementNotFoundException
+   * Verify the header.
    */
-  protected function press_save_and_publish_button() {
-    $this->helper_context->getSession()
-      ->getPage()
-      ->pressButton($this->page->get_button('SAVE_AND_PUBLISH'));
+  protected function verify_header() {
+    $header_regions = $this->page->get_all_header_regions();
+    self::verify_regions($header_regions);
   }
 
   /**
-   * @throws \Behat\Mink\Exception\ElementNotFoundException
+   * Verify the footer.
    */
-  protected function press_save_and_keep_published_button() {
-    $this->helper_context->getSession()
-      ->getPage()
-      ->pressButton($this->page->get_button('SAVE_AND_KEEP_PUBLISHED'));
+  protected function verify_footer() {
+    $footer_regions = $this->page->get_all_header_regions();
+    self::verify_regions($footer_regions);
   }
 }
 

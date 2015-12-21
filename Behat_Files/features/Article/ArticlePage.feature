@@ -151,3 +151,17 @@ Feature: Article page
     And I verify the 'Image' assets via JS
     And I verify the 'Script' assets via JS
     And I verify the 'Hyperlink' assets via JS
+
+
+#########################################################################################
+###  HEADER & FOOTER
+#########################################################################################
+
+  @article @api @regression @bm
+  Scenario: Verify the Article page header
+    Given I am logged in as a user with the administrator role
+    And I am able to create an article content
+    When I am not logged in
+    And I visit the View Article page
+    Then I verify the header
+    And I verify the footer
