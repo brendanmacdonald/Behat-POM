@@ -95,7 +95,7 @@ class PageContext implements Context {
   protected function press_save_and_publish_button() {
     $this->helper_context->getSession()
       ->getPage()
-      ->pressButton($this->page->get_create_button('SAVE_AND_PUBLISH'));
+      ->pressButton($this->page->get_button('SAVE_AND_PUBLISH'));
   }
 
   /**
@@ -104,7 +104,7 @@ class PageContext implements Context {
   protected function press_save_and_keep_published_button() {
     $this->helper_context->getSession()
       ->getPage()
-      ->pressButton($this->page->get_edit_button('SAVE_AND_KEEP_PUBLISHED'));
+      ->pressButton($this->page->get_button('SAVE_AND_KEEP_PUBLISHED'));
   }
 }
 
