@@ -1,6 +1,5 @@
 {
   "name": "cw_behat/behatfiles",
-  "version": "0.1",
   "autoload": {
     "psr-0": {
       "NS_": "src"

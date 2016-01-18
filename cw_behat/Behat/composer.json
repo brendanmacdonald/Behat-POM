@@ -6,6 +6,12 @@
     "phpunit/phpunit": "*",
     "cw_behat/behatfiles": "master"
   },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git://github.com/brendanmacdonald/Behat-POM.git"
+    }
+  ],
   "autoload": {
     "psr-0": {
       "": "pages/"
