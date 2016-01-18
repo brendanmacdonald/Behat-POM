@@ -31,13 +31,13 @@ fi
 
 
 ##############################################################################
-###    SYNC BEHAT_FILES PRIOR TO EXECUTION
+###    SYNC Project_Files PRIOR TO EXECUTION
 ##############################################################################
-rsync ../../Behat_Files/behat.yml features/..
-rsync ../../Behat_Files/contexts/*.php features/bootstrap
-rsync -a ../../Behat_Files/features/* features/
-rsync -a ../../Behat_Files/images ../Behat
-rsync -a ../../Behat_Files/pages ../Behat
+rsync ../Project_Files/behat.yml features/..
+rsync ../Project_Files/contexts/*.php features/bootstrap
+rsync -a ../Project_Files/features/* features/
+rsync -a ../Project_Files/images ../Behat
+rsync -a ../Project_Files/pages ../Behat
 
 
 ##############################################################################
