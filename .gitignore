@@ -9,8 +9,6 @@ Behat/pages
 Behat/images
 Behat/behat.local.yml
 
-#
-
 # Ignore Servers installs
 Servers/selenium.jar
 
