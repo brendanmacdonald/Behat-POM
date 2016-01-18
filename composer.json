@@ -9,7 +9,7 @@
   ],
   "repositories": [
     {
-      "type": "vcs",
+      "type": "package",
       "url": "git://github.com/brendanmacdonald/Behat-POM.git"
     }
   ],
