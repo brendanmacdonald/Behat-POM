@@ -1,0 +1,25 @@
+{
+  "authors": [
+    {
+      "name": "cw_behat/behatfiles",
+      "email": "brendan.macdonald@cameronandwilding.com",
+      "homepage": "http://www.cameronandwilding.com",
+      "role": "Tester"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git://github.com/brendanmacdonald/Behat-POM.git"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-0": {
+      "files": "src"
+    },
+    "classmap": [
+      "classes"
+    ]
+  }
+}
