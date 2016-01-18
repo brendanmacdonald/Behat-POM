@@ -66,3 +66,4 @@ Feature: Roles and Responsibilities
     Given I am logged in as a user with the administrator role
     And I am on "/user/logout"
     Then the response status code should be 200
+
