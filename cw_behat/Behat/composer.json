@@ -1,17 +1,17 @@
 {
-  "require": {
-    "behat/behat": "3.0.6",
-    "drupal/drupal-extension": "~3.0",
-    "emuse/behat-html-formatter": "0.1.0",
-    "phpunit/phpunit": "*",
-    "cw_behat/behatfiles": "master"
-  },
   "repositories": [
     {
       "type": "git",
       "url": "git://github.com/brendanmacdonald/Behat-POM.git"
     }
   ],
+  "require": {
+    "behat/behat": "3.0.6",
+    "drupal/drupal-extension": "~3.0",
+    "emuse/behat-html-formatter": "0.1.0",
+    "phpunit/phpunit": "*",
+    "cw_behat/behatfiles": "dev-master"
+  },
   "autoload": {
     "psr-0": {
       "": "pages/"
