@@ -6,8 +6,5 @@
       "email": "info@cameronandwilding.com"
     }
   ],
-  "minimum-stability": "dev",
-  "config": {
-    "vendor-dir": "cw_behat_framework/"
-  }
+  "minimum-stability": "dev"
 }
