@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c9ae5a22f16ef4f034546a4fdd80ded5",
-    "content-hash": "0cc3e61ec51a6bdb4d66608dab59c2da",
+    "hash": "2e8d7fc2547650974dcc2dfebc0ff14e",
+    "content-hash": "c9525c6fe608391b7b831383181c6008",
     "packages": [
         {
             "name": "behat/behat",
@@ -476,20 +476,15 @@
             "time": "2015-09-28 16:26:35"
         },
         {
-            "name": "cw_behat/behatfiles",
+            "name": "cw_behat/behat_files",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "git://github.com/brendanmacdonald/Behat-POM.git",
-                "reference": "10b5dc30804461b10daa3a490fe4262313ff855b"
+                "reference": "e406255fda9e0f3b6d0af4aae95486a4b7ce40f7"
             },
             "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "NS_": "src"
-                }
-            },
-            "time": "2016-01-18 10:17:46"
+            "time": "2016-01-18 10:23:36"
         },
         {
             "name": "doctrine/instantiator",
@@ -2646,7 +2641,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "cw_behat/behatfiles": 20
+        "cw_behat/behat_files": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
