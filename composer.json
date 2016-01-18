@@ -1,3 +1,9 @@
 {
-  "name": "cw_behat/cw_behat"
-}
+  "name": "cw_behat/cw_behat",
+  "authors": [
+    {
+      "name": "Cameron and Wilding",
+      "email": "info@cameronandwilding.com"
+    }
+    }
+  ]
