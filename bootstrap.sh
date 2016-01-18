@@ -18,3 +18,6 @@ default:
       drupal:
         drupal_root: /Applications/MAMP/htdocs/
 EOF
+
+#  Rename the 'Sample_Files' directory so that does not get updated by composer update.
+mv Sample_Files Project_Files
