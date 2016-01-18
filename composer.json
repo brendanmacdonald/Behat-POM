@@ -1,5 +1,6 @@
 {
   "name": "cw/behat_framework",
+  "minimum-stability": "dev",
   "authors": [
     {
       "name": "Cameron and Wilding",
