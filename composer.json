@@ -6,5 +6,8 @@
       "name": "Cameron and Wilding",
       "email": "info@cameronandwilding.com"
     }
-  ]
+  ],
+  "config": {
+    "vendor-dir": "cw_behat_framework/"
+  }
 }
