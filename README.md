@@ -3,11 +3,13 @@ BEHAT SETUP & EXECUTION
 
 Get the behat framework
 =======================
+1. Install the framework:
 composer require bm/behat_framework=dev-master 
 
 Tool setup
 ==========
 1. Install Behat:
+  - cd behat_framework
   - ./bootstrap.sh
     
 2. Inside 'Behat/behat.local.yml', update:
