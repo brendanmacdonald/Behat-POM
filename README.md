@@ -9,7 +9,7 @@ composer require bm/behat_framework=dev-master
 Tool setup
 ==========
 1. Install Behat:
-  - cd behat_framework
+  - cd vendor/bm/behat_framework
   - ./bootstrap.sh
     
 2. Inside 'Behat/behat.local.yml', update:
