@@ -4,7 +4,7 @@ BEHAT SETUP & EXECUTION
 Get the behat framework
 =======================
 1. Install the framework:
-composer require bm/behat_framework=dev-master 
+  - composer require bm/behat_framework
 
 Tool setup
 ==========
