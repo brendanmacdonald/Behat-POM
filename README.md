@@ -1,6 +1,10 @@
 BEHAT SETUP & EXECUTION
 =======================
 
+Get the behat framework
+=======================
+composer require bm/behat_framework=dev-master 
+
 Tool setup
 ==========
 1. Install Behat:
