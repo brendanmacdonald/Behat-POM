@@ -3,18 +3,18 @@ BEHAT SETUP & EXECUTION
 
 Get the behat framework
 =======================
-1. Install the framework:
-  - composer require bm/behat_framework
+* Install the framework:
+  * composer require bm/behat_framework
 
 Tool setup
 ==========
-1. Install Behat:
-  - cd vendor/bm/behat_framework
-  - ./bootstrap.sh
+* Install Behat:
+  * cd vendor/bm/behat_framework
+  * ./bootstrap.sh
     
-2. Inside 'Behat/behat.local.yml', update:
-  - the 'base_url' to your local site url
-  - the 'drupal_root' value to the path to your local drupal installation.
+* Inside 'Behat/behat.local.yml', update:
+  * the 'base_url' to your local site url
+  * the 'drupal_root' value to the path to your local drupal installation.
        
 
 Optional Step
@@ -38,5 +38,6 @@ or
 
 Test Results
 ============
-The results of all tests will be stored in <LOCAL DRUPAL INSTALL>/cw_test/Results/Twig_***.html
+The results of all tests will be stored in 
+  * <LOCAL DRUPAL INSTALL>/cw_test/Results/Twig_***.html
 
